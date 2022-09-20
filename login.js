@@ -10,12 +10,17 @@ function login(event){
     }
    
    axios.post("http://localhost:8000/login",obj)
-    .then(res=>{
-        console.log("Logged in")
+    .then(res => {
+        
         alert("Logged in successfully")
-    }).catch(err=>{
+    })
+    .catch(err=>{
         if(err.response.status==404){
-            alert("User exists")
+            alert("User not found")
         }
+        if(err.response.status==401){
+            alert("Unauthorised access")
+        }
+        
     })
 }
