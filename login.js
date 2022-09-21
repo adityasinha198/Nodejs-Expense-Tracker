@@ -13,6 +13,7 @@ function login(event){
     .then(res => {
         
         alert("Logged in successfully")
+        location.replace('/expense.html')
     })
     .catch(err=>{
         if(err.response.status==404){
