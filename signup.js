@@ -14,8 +14,11 @@ function onSubmit(event){
     .then(res=>{
         console.log(res)
     }).catch(err=>{
+        if(err.response.status==406){
+            alert("User created")
+        }
         if(err.response.status==404){
-            alert("User exists")
+            alert("Emailid already exists")
         }
     })
 }
