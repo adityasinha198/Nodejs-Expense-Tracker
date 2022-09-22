@@ -40,8 +40,9 @@
                     category
                 }
                 //showNewUserOnScreen(obj)
+                const token = localStorage.getItem("token")
                 axios
-                .post("http://localhost:8000/addexpense",obj)
+                .post("http://localhost:8000/addexpense",obj,{headers :{"Authorisation": token}})
                 
                 .then((response)=>{
                     var a = response.data
@@ -57,9 +58,11 @@
             }
 
             window.addEventListener("DOMContentLoaded", () => {
+                const token = localStorage.getItem("token")
+                console.log(token)
                
                
-                axios.get("http://localhost:8000/getexpense")
+                axios.get("http://localhost:8000/getexpense",{headers :{"Authorisation": token}})
 
                 .then((res)=>{
                     

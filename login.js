@@ -11,6 +11,9 @@ function login(event){
    
    axios.post("http://localhost:8000/login",obj)
     .then(res => {
+        console.log(res.data.token)
+        const token = res.data.token
+        localStorage.setItem("token",token)
         
         alert("Logged in successfully")
         location.replace('/expense.html')
