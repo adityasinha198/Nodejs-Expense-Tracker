@@ -67,10 +67,11 @@
 
             window.addEventListener("DOMContentLoaded", () => {
                 const token = localStorage.getItem("token")
+                const ispremiumuser = localStorage.getItem('ispremiumuser')
                 console.log(token)
                
                
-                axios.get("http://localhost:8000/getexpense",{headers :{"Authorisation": token}})
+                axios.get("http://localhost:8000/getexpense",{headers :{"Authorisation": token,"ispremiumuser":ispremiumuser}})
 
                 .then((res)=>{
                     

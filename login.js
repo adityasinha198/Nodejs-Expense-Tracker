@@ -13,7 +13,10 @@ function login(event){
     .then(res => {
         console.log(res.data.token)
         const token = res.data.token
+        const ispremiumuser = res.data.ispremiumuser
+        
         localStorage.setItem("token",token)
+        localStorage.setItem('ispremiumuser',ispremiumuser)
         
         alert("Logged in successfully")
         location.replace('/expense.html')
