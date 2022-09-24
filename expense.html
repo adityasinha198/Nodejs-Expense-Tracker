@@ -2,8 +2,9 @@
 <html>
     <body >
         <header>
-            <ul class="header">
-                <li style="float: right;color: white;"><button id="rzp-button1" type="button"  style="color: blue; background-color:red ">Buy Premium Membership</button></li>
+            <ul class="header" >
+                <li style="float: right;color: white;"><button id="rzp-button1" type="button"  style="color: brown; background-color:red ">Buy Premium Membership</button></li>
+
                 </ul>
                 </header>
                 <div>
@@ -29,8 +30,20 @@
             
             <button>Add Expense </button>
         </form>
+        
     </div>
-        <ul id='listOfUsers'></ul>
+
+        <ul id="listOfUsers"></ul>
+
+
+        <div style="border:2px solid black ;background-color: white;" id="division" >
+           
+        <ul id="header" style="color: brown;"></ul>
+
+        </div>
+        <div id ="division2">
+            <ul id="showuser"></ul>
+        </div>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script> 
         <script>
@@ -69,16 +82,66 @@
                 const token = localStorage.getItem("token")
                 const ispremiumuser = localStorage.getItem('ispremiumuser')
                 console.log(token)
+
+                axios.get("http://localhost:8000/leaderboard",{headers :{"Authorisation": token,"ispremiumuser":ispremiumuser }})
+                .then(res =>{
+                    console.log(res.data)
+                    if(res.data!= "Nothing to show")
+                    console.log(res.data[1])
+                    
+                    {  
+                        const division = document.getElementById("division")
+                        const head = document.createElement("h2")
+                        head.setAttribute("style","text-align:center; color: red;")
+                        head.innerHTML = `LEADERBOARD`
+                        division.prepend(head)
+                        
+
+                        const unorder = document.getElementById("header")
+                       
+                       
+                       
+                        const arr = Object.keys(res.data)
+
+
+                for(let i =0;i<arr.length;i++){
+                    const addboard = document.createElement("li")
+                    const btn = document.createElement('button')
+                    btn.id = `${arr[i]}`
+                    btn.setAttribute("onclick",`showleaderboard(${arr[i]})`)
+
+                    btn.innerHTML = `${arr[i]}:${res.data[arr[i]]}`
+                    addboard.appendChild(btn)
+
+                    unorder.appendChild(addboard)
+
+
+                                    }
+                        
+                        
+                        
+                        console.log(addboard)
+                       
+
+
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
                
                
                 axios.get("http://localhost:8000/getexpense",{headers :{"Authorisation": token,"ispremiumuser":ispremiumuser}})
 
-                .then((res)=>{
+                    .then((res)=>{
                     
                     for(let i =0;i<res.data.length;i++){
+                        console.log(res.data)
+
                         showNewUserOnScreen(res.data[i])
                     }
                     })
+                    
                 .catch((err)=>{
                 console.log("Something went wrong")
                 })
@@ -147,6 +210,43 @@ deleteUser(uid,description)
                 const childNodeToBeDeleted = document.getElementById(Id);
 
                 parentNode.removeChild(childNodeToBeDeleted)
+            }
+
+            function showleaderboard(Id){
+                console.log(Id)
+                axios.get(`http://localhost:8000/showuserboard/${Id}`)
+                .then(res =>{
+                    const showuser = document.getElementById("showuser")
+                    if(showuser.innerHTML!=null)
+                    {
+                        showuser.innerHTML = null
+                    }
+                    
+                    const headlist = document.createElement("li")
+
+                    const head = document.createElement("h1")
+                    head.innerHTML=`User ${Id} info`
+                    headlist.prepend(head)
+                    showuser.appendChild(headlist)
+
+
+                    for(let i=0;i<res.data.length;i++){
+                        
+                        const amount = res.data[i].amount
+                        const description = res.data[i].description
+                        const category = res.data[i].category
+                        const showlist = document.createElement("li")
+                        showlist.innerHTML = `${amount} - ${description} -${category}`
+                        showuser.appendChild(showlist)
+                        
+
+                    }
+                    console.log(res.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
             }
                 
                 
