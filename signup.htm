@@ -4,17 +4,23 @@
         <title>NEW USER SIGNUP PAGE</title>
 
 </head>
-<body>
-    <form onsubmit="onSubmit(event)" id="myForm" method="post">
-        <label for="fname">Name</label>
+<body style="background-image: url('https://images.unsplash.com/photo-1529788295308-1eace6f67388?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8dW5pdmVyc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60');background-size: cover;">
+    <div style="background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg');text-align: center;border:1px solid black ;width:50% ;margin-left: 20%;background-color: chocolate;">
+    <form onsubmit="onSubmit(event)" id="myForm" method="post" style="padding-top: 0.5cm;padding-left: 1cm;padding-bottom:1cm;text-align:justify;color:rgba(112, 136, 200, 0.491);">
+        <label for="fname">Name: </label><br>
         <input   type="text" id="name" name="name"required title="Enter your name">
-        <label for="desc">EmailID</lable>
+        <br>
+        <label for="desc">EmailID: </lable><br>
         <input  type="text" id="emailid" name="emailid" required title="Enter your EmailID">
-        <label for="categ">Create Password</label>
+        <br>
+        <label for="categ">Create Password: </label><br>
         <input type="password" id="password" name="password" required title="Create Password">
-        <button type="submit" id="btn">SIGNUP</button><br><br>
+        <br><br>
+        <button type="submit" id="btn" >SIGNUP</button><br><br>
         </form>
-        <a href="./login.htm">Existing User-login</a>
+        <a href="./login.htm" style="color:  rgba(112, 136, 200, 0.491);text-decoration: none;">Existing User-login</a>
+        
+    </div>
 
         <ul id="formList"></ul>
         

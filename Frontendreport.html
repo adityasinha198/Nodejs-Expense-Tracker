@@ -5,9 +5,11 @@
         Frontend Report
     </title>
 </head>
-<body>
+<body style="background-image:url('https://images.pexels.com/photos/7856648/pexels-photo-7856648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');background-size: cover;">
+
+
     <h2 style="text-align:center ;color:brown">MONTHLY EXPENSES</h2>
-    <table style="width:100%;border:2px solid black ;text-align: center;">
+    <table style="width:100%;border:2px solid black ;text-align: center;" id="month">
         <tr style="border:2px solid black ;color: rebeccapurple">
             <th style="border:2px solid black ;">Date</th>
           <th style="border:2px solid black ;">Description</th>
@@ -16,8 +18,10 @@
         </tr>
        
       </table>
+
+
       <h2 style="text-align:center ;color:brown">WEEKLY EXPENSES</h2>
-      <table style="width:100%;border:2px solid black ;text-align: center;">
+      <table style="width:100%;border:2px solid black ;text-align: center;" id="week">
           <tr style="border:2px solid black ;color: rebeccapurple">
               <th style="border:2px solid black ;">Date</th>
             <th style="border:2px solid black ;">Description</th>
@@ -26,8 +30,10 @@
           </tr>
          
         </table>
+
+
         <h2 style="text-align:center ;color:brown">DAILY EXPENSES</h2>
-        <table style="width:100%;border:2px solid black ;text-align: center;">
+        <table style="width:100%;border:2px solid black ;text-align: center;" id="daily">
             <tr style="border:2px solid black ;color: rebeccapurple;">
                 <th style="border:2px solid black ;">Date</th>
               <th style="border:2px solid black ;">Description</th>
@@ -37,7 +43,10 @@
            
           </table>
           <br>
+          <div></div>
 
           <button style="color: blue;background-color:darksalmon;" type="button">DOWNLOAD EXPENSE</button>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"> </script>
+          <script src="Frontendreport.js"></script>
 </body>
 </html>
